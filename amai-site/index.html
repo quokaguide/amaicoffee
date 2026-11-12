@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMAI Santa Monica</title>
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --ink: #1a1a1a;
+    --muted: #8a867f;
+    --line: #d9d5cc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background:
+      radial-gradient(ellipse at 20% 10%, #fbfaf7 0%, transparent 60%),
+      radial-gradient(ellipse at 85% 90%, #ece8e0 0%, transparent 55%),
+      var(--bg);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 28px 40px;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  header a { color: var(--ink); text-decoration: none; }
+  /* Full-bleed photo behind everything */
+  .bg {
+    position: fixed; z-index: -1;
+    top: 9vh; bottom: 9vh; right: 0; left: auto;
+    aspect-ratio: 1 / 1;
+    /* zoomed out: raise top/bottom (9vh) to zoom out more, lower to zoom in */
+    background: url("images/hero.jpg") center / cover no-repeat;
+    /* fades the photo edges into the page */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+    -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(90deg, transparent 0%, #000 38%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+            mask-composite: intersect;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 56px 60px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: min(560px, 100%);
+  }
+  .logo { width: min(380px, 80%); line-height: 0; }
+  .logo img { width: 100%; height: auto; display: block; }
+  .sub {
+    margin-top: 26px;
+    font-size: 12px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tag {
+    margin-top: 40px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  nav {
+    margin-top: 56px;
+    width: min(360px, 100%);
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  nav a {
+    padding: 26px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    transition: color .2s;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%; bottom: 18px;
+    width: 0; height: 1px;
+    background: var(--ink);
+    transition: width .25s, left .25s;
+  }
+  nav a:hover::after { width: 36px; left: calc(50% - 18px); }
+  footer {
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  @media (max-width: 800px) {
+    main { justify-content: center; padding: 0 24px 40px; }
+    .bg { inset: 0; aspect-ratio: auto; -webkit-mask-image: none; mask-image: none; }
+    .bg::after { content: ""; position: absolute; inset: 0; background: rgba(246,244,240,.72); }
+  }
+  @media (max-width: 560px) {
+    header { padding: 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; align-items: center; }
+  }
+</style>
+</head>
+<body>
+  <!-- Background photo: replace images/hero.jpg with a high-res version for best sharpness -->
+  <div class="bg" role="img" aria-label="Iced coffee in a glass"></div>
+  <header></header>
+
+  <main>
+    <div class="content">
+      <h1 class="logo"><img src="images/logo.png" alt="AMAI"></h1>
+      <p class="tag">Asian inspired &amp; thoughtfully crafted</p>
+
+      <nav>
+        <a href="menu.html">Menu</a>
+        <a href="locations.html">Locations</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer>
+    <span>Have a sweet day!</span>
+    <a href="https://amaisantamonica.square.site/" target="_blank" rel="noopener">Contact</a>
+  </footer>
+</body>
+</html>

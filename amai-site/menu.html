@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu | AMAI Santa Monica</title>
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --ink: #1a1a1a;
+    --muted: #8a867f;
+    --line: #d9d5cc;
+    --gold: #b8935a;
+    --green: #6f8f5f;
+    --yellow: #c9a227;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(ellipse at 20% 0%, #fbfaf7 0%, transparent 60%),
+      radial-gradient(ellipse at 90% 100%, #ece8e0 0%, transparent 55%),
+      var(--bg);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 40px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  }
+  header a:hover { opacity: .6; }
+
+  .title { text-align: center; padding: 20px 24px 10px; }
+  .logo { display:block; width:min(220px,55%); margin:0 auto 34px; }
+  .logo img { width:100%; display:block; }
+  .title h1 {
+    font-size: 13px;
+    font-weight: 600; letter-spacing: .3em; padding-left: .3em; color: var(--muted);
+  }
+  .title p {
+    margin-top: 12px; font-size: 12px; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .jump {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px;
+    margin: 36px auto 0; padding: 18px 24px;
+    max-width: 900px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  }
+  .jump a:hover { color: var(--gold); }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 20px 40px 60px; }
+  section { margin-top: 56px; }
+  section h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase;
+    text-align: center; padding-bottom: 14px; margin-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+    color: var(--gold);
+  }
+  section.matcha h2, section.tea h2 { color: var(--green); }
+  section.spring h2 { color: var(--yellow); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 56px; }
+  .item .row { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+  .item h3 { font-size: 15px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+  .item .star { color: var(--gold); margin-left: 4px; }
+  .item .price { font-size: 14px; letter-spacing: .04em; white-space: nowrap; }
+  .item .tag {
+    margin-top: 5px; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+  }
+  .item .desc {
+    margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: #55524c;
+    text-transform: uppercase; letter-spacing: .05em;
+  }
+  .item .note {
+    margin-top: 4px; font-family: Georgia, serif; font-style: italic; font-size: 13px; color: var(--muted);
+    text-transform: none; letter-spacing: 0;
+  }
+  .footnote {
+    margin-top: 28px; text-align: center; font-family: Georgia, serif; font-style: italic;
+    font-size: 13px; color: var(--muted);
+  }
+  .extras { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+  .extras ul { list-style: none; }
+  .extras li {
+    display: flex; justify-content: space-between; padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .extras h4 {
+    font-size: 11px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+    color: var(--muted); padding-bottom: 10px;
+  }
+
+  @media (max-width: 700px) {
+    header { padding: 20px; }
+    main { padding: 10px 22px 40px; }
+    .grid, .extras { grid-template-columns: 1fr; gap: 24px; }
+    .extras { gap: 30px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <a href="index.html">&larr; Home</a>
+    <a href="https://amaisantamonica.square.site/" target="_blank" rel="noopener">Order Now</a>
+  </header>
+
+  <div class="title">
+    <a class="logo" href="index.html"><img src="images/logo.png" alt="AMAI"></a>
+    <h1>MENU</h1>
+    <p>Asian inspired coffee &middot; It means sweet</p>
+  </div>
+
+  <nav class="jump">
+    <a href="#specialty">Specialty</a>
+    <a href="#classic">Classic</a>
+    <a href="#refreshments">Refreshments</a>
+    <a href="#kids">Kids</a>
+    <a href="#matcha">Matcha</a>
+    <a href="#tea">Teas</a>
+    <a href="#spring">Spring Specials</a>
+    <a href="#extras">Add-ons</a>
+  </nav>
+
+  <main id="menu"></main>
+
+<script>
+// Edit items and prices here. Fields: n=name, p=price, t=iced/hot tag, d=description, note=italic note, star=signature
+const MENU = [
+  { id:"specialty", title:"Specialty Asian Inspired Coffee", cls:"", items:[
+    {n:"Amai Signature", star:1, t:"Iced only", d:"Espresso + brown sugar + milk + sweet foam + cocoa powder"},
+    {n:"Vietnamese House Coffee", star:1, t:"Recommended iced* | Hot", d:"Phin coffee + condensed milk + salted foam + cacao powder"},
+    {n:"Turon Banana", star:1, t:"Iced or hot", d:"Espresso + milk + banana + banana chips", note:"Try it with banana foam*"},
+    {n:"Manila Vanilla", t:"Iced or hot", d:"Espresso + milk + organic roasted vanilla", note:"A classic!"},
+    {n:"Honeycomb", t:"Iced or hot", d:"Espresso + milk + organic honey", note:"Try it with oat*"},
+    {n:"Mocha", t:"Iced or hot", d:"Double espresso + 33% mocha + coconut blossom sugar + milk"},
+    {n:"Espresso Tonic", t:"Iced only", d:"Fever Tree tonic water + double espresso"}
+  ]},
+  { id:"classic", title:"Classic", cls:"", items:[
+    {n:"Espresso", p:"$3.50", d:"Cacao nib, candied orange, stonefruit"},
+    {n:"Cortado", p:"$4.50", d:"Equal parts espresso + milk"},
+    {n:"Flat White", p:"$4.75", d:"Double espresso + silky milk"},
+    {n:"Cappuccino", p:"$4.75", d:"Double espresso + frothy milk"},
+    {n:"Latte", p:"$5.00", d:"Double espresso + milk"},
+    {n:"Americano", p:"$4.00", d:"Double espresso + water"},
+    {n:"Cold Brew", p:"$6.00", d:"Featuring Sightglass"},
+    {n:"Salted Cold Brew", p:"$7.00", d:"Cold brew + salted cold foam"}
+  ]},
+  { id:"refreshments", title:"Refreshments", cls:"", items:[
+    {n:"House Lemonade", p:"$6.00", d:"Lemon + sugar"},
+    {n:"Princess Lemonade", p:"$6.50", d:"Lemonade + strawberry + Topo Chico"},
+    {n:"Mango Spritz", p:"$6.50", d:"Housemade lemonade + mango + Topo Chico"}
+  ]},
+  { id:"kids", title:"Kids", cls:"", items:[
+    {n:"Hot Cocoa", p:"$4.50", d:"33% mocha + vanilla + milk"},
+    {n:"Chocolate Milk", p:"$4.50", d:"33% mocha + vanilla + milk"},
+    {n:"Steamer / Cup of Milk", p:"$4.00", d:"Steamed kids temp milk"}
+  ]},
+  { id:"matcha", title:"Matcha", cls:"matcha", footnote:"*Matcha ethically sourced. Serving ceremonial grade from Fukuoka.", items:[
+    {n:"Matcha Einspanner", star:1, t:"Iced only", d:"Ceremonial matcha + simple + milk + sweet foam + matcha powder"},
+    {n:"House Matcha", t:"Iced or hot", d:"Ceremonial matcha + agave + choice of milk", note:"A perfectly sweet matcha"},
+    {n:"Banana Cream Matcha", star:1, t:"Iced only", d:"Ceremonial matcha + banana + milk + banana cream + banana chips"},
+    {n:"Strawberry Matcha", star:1, t:"Iced only", d:"Ceremonial matcha + strawberry puree + choice of milk"},
+    {n:"Blueberry Matcha", t:"Iced only", d:"Ceremonial matcha + blueberry puree + choice of milk"},
+    {n:"Mango Sticky Matcha", t:"Iced only", d:"Ceremonial matcha + mango puree + milk + coconut"}
+  ]},
+  { id:"tea", title:"Teas & Looseleaf", cls:"tea", items:[
+    {n:"Ho-Jicha Einspanner", t:"Iced only", d:"Ceremonial hojicha + brown sugar + Koatji oatmilk + sweet foam"},
+    {n:"Ho-Jicha Latte", t:"Iced or hot", d:"Ceremonial hojicha + brown sugar + Koatji oatmilk"},
+    {n:"House Chai", t:"Iced or hot", d:"Organic local wildflower honey + pure vanilla + single-origin black tea + spices + choice of milk"},
+    {n:"China Breakfast", t:"Iced or hot", d:"Mellow | sweet | full", note:"Hints of sweet caramel and raisin"},
+    {n:"Jasmine Green", t:"Iced or hot", d:"Fresh | floral | elegant", note:"Organic green tea, Xuan En, Hubei Province, China"},
+    {n:"Peppermint", t:"Iced or hot | Non-caffeinated", d:"Fresh | floral | elegant", note:"Organic peppermint tea, Xuan En, Hubei Province"},
+    {n:"Chamomile", t:"Iced or hot | Non-caffeinated", d:"Fresh | floral", note:"Organic chamomile tea"}
+  ]},
+  { id:"spring", title:"Spring Specials", cls:"spring", items:[
+    {n:"Coconut Matcha Cloud", t:"Iced only", d:"Pure coconut water + ceremonial grade matcha foam"},
+    {n:"Ube Coffee", t:"Recommended iced* | Hot", d:"Espresso + house-made ube syrup + milk"},
+    {n:"Double Matcha Latte", t:"Recommended iced* | Hot", d:"Ceremonial matcha + simple + milk + matcha foam"},
+    {n:"Pandan Matcha", t:"Iced only", d:"Ceremonial matcha + house pandan syrup + milk"}
+  ]}
+];
+
+const EXTRAS = {
+  addons: [["Sweet Cold Foam","$1"],["Salted Cold Foam","$1"],["Banana Cream","$1"],
+           ["Add Single Espresso","$1.50"],["Add Double Espresso","$1.75"],
+           ["Add Single Matcha","$1.50"],["Add Double Matcha","$1.75"]],
+  milks:  [["Whole Milk","Free"],["2% Lowfat","Free"],["Almond Milk","$.50"],
+           ["Oatmilk or Koatji","$.50"],["Add Syrup","$.50"]]
+};
+
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const root = document.getElementById("menu");
+
+MENU.forEach(sec => {
+  const items = sec.items.map(i => `
+    <div class="item">
+      <div class="row"><h3>${esc(i.n)}${i.star ? '<span class="star">&#10022;</span>' : ""}</h3>${i.p ? `<span class="price">${esc(i.p)}</span>` : ""}</div>
+      ${i.t ? `<div class="tag">${esc(i.t)}</div>` : ""}
+      ${i.d ? `<div class="desc">${esc(i.d)}</div>` : ""}
+      ${i.note ? `<div class="desc note">${esc(i.note)}</div>` : ""}
+    </div>`).join("");
+  root.insertAdjacentHTML("beforeend", `
+    <section id="${sec.id}" class="${sec.cls}">
+      <h2>${esc(sec.title)}</h2>
+      <div class="grid">${items}</div>
+      ${sec.footnote ? `<p class="footnote">${esc(sec.footnote)}</p>` : ""}
+    </section>`);
+});
+
+const list = arr => arr.map(([a,b]) => `<li><span>${a}</span><span>${b}</span></li>`).join("");
+root.insertAdjacentHTML("beforeend", `
+  <section id="extras">
+    <h2>Add-ons &amp; Milk</h2>
+    <div class="extras">
+      <div><h4>Add-ons</h4><ul>${list(EXTRAS.addons)}</ul></div>
+      <div><h4>Milk Options</h4><ul>${list(EXTRAS.milks)}</ul></div>
+    </div>
+  </section>`);
+</script>
+</body>
+</html>
