@@ -1,51 +1,142 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Locations | AMAI</title>
-<style>
-  :root { --bg:#f6f4f0; --ink:#1a1a1a; --muted:#8a867f; --line:#d9d5cc; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body {
-    background:
-      radial-gradient(ellipse at 20% 0%, #fbfaf7 0%, transparent 60%),
-      radial-gradient(ellipse at 90% 100%, #ece8e0 0%, transparent 55%),
-      var(--bg);
-    color:var(--ink);
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    min-height:100vh; display:flex; flex-direction:column;
-  }
-  a { color:inherit; text-decoration:none; }
-  header { padding:28px 40px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
-  header a:hover { opacity:.6; }
-  main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 24px 80px; text-align:center; }
-  .logo { width:min(200px,50%); margin-bottom:40px; }
-  .logo img { width:100%; display:block; }
-  h1 { font-size:12px; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); margin-bottom:28px; }
-  ul { list-style:none; width:min(520px,100%); border-top:1px solid var(--line); }
-  li { border-bottom:1px solid var(--line); }
-  li a {
-    display:flex; justify-content:space-between; align-items:center;
-    padding:26px 8px; font-size:15px; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
-    transition:padding .2s, color .2s;
-  }
-  li a span.arrow { color:var(--muted); transition:transform .2s, color .2s; }
-  li a:hover { padding-left:16px; }
-  li a:hover span.arrow { transform:translateX(4px); color:var(--ink); }
-  @media (max-width:560px) { header { padding:20px; } li a { font-size:13px; } }
-</style>
-</head>
-<body>
-  <header><a href="index.html">&larr; Home</a></header>
-  <main>
-    <a class="logo" href="index.html"><img src="images/logo.png" alt="AMAI"></a>
-    <h1>Our Locations</h1>
-    <ul>
-      <li><a href="https://amaisantamonica.square.site/" target="_blank" rel="noopener">Santa Monica <span class="arrow">&rarr;</span></a></li>
-      <li><a href="https://amaiglendale.square.site/" target="_blank" rel="noopener">Glendale <span class="arrow">&rarr;</span></a></li>
-      <li><a href="https://amaiteacafe.com/" target="_blank" rel="noopener">Torrance <span class="arrow">&rarr;</span></a></li>
-    </ul>
-  </main>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Locations | AMAI</title>
+    <style>
+      :root {
+        --bg: #f6f4f0;
+        --ink: #1a1a1a;
+        --muted: #8a867f;
+        --line: #d9d5cc;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background:
+          radial-gradient(ellipse at 20% 0%, #fbfaf7 0%, transparent 60%),
+          radial-gradient(ellipse at 90% 100%, #ece8e0 0%, transparent 55%),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      header {
+        padding: 28px 40px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      header a:hover {
+        opacity: 0.6;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 24px 80px;
+        text-align: center;
+      }
+      .logo {
+        width: min(200px, 50%);
+        margin-bottom: 40px;
+      }
+      .logo img {
+        width: 100%;
+        display: block;
+      }
+      h1 {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+      ul {
+        list-style: none;
+        width: min(520px, 100%);
+        border-top: 1px solid var(--line);
+      }
+      li {
+        border-bottom: 1px solid var(--line);
+      }
+      li a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 26px 8px;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        transition:
+          padding 0.2s,
+          color 0.2s;
+      }
+      li a span.arrow {
+        color: var(--muted);
+        transition:
+          transform 0.2s,
+          color 0.2s;
+      }
+      li a:hover {
+        padding-left: 16px;
+      }
+      li a:hover span.arrow {
+        transform: translateX(4px);
+        color: var(--ink);
+      }
+      @media (max-width: 560px) {
+        header {
+          padding: 20px;
+        }
+        li a {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header><a href="/">&larr; Home</a></header>
+    <main>
+      <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
+      <h1>Our Locations</h1>
+      <ul>
+        <li>
+          <a
+            href="https://amaisantamonica.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Santa Monica <span class="arrow">&rarr;</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="https://amaiglendale.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Glendale <span class="arrow">&rarr;</span></a
+          >
+        </li>
+        <li>
+          <a href="https://amaiteacafe.com/" target="_blank" rel="noopener"
+            >Torrance <span class="arrow">&rarr;</span></a
+          >
+        </li>
+      </ul>
+    </main>
+  </body>
 </html>
