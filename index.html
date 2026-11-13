@@ -6,10 +6,10 @@
     <title>AMAI</title>
     <style>
       :root {
-        --bg: #f6f4f0;
+        --bg: #dddedc;
         --ink: #1a1a1a;
-        --muted: #8a867f;
-        --line: #d9d5cc;
+        --muted: #6b6d6a;
+        --line: #bfc1be;
       }
       * {
         box-sizing: border-box;
@@ -21,10 +21,7 @@
         height: 100%;
       }
       body {
-        background:
-          radial-gradient(ellipse at 20% 10%, #fbfaf7 0%, transparent 60%),
-          radial-gradient(ellipse at 85% 90%, #ece8e0 0%, transparent 55%),
-          var(--bg);
+        background: var(--bg);
         color: var(--ink);
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         display: flex;
@@ -43,54 +40,41 @@
         color: var(--ink);
         text-decoration: none;
       }
-      /* Full-bleed photo behind everything */
-      .bg {
-        position: fixed;
-        z-index: -1;
-        top: 9vh;
-        bottom: 9vh;
-        right: 0;
-        left: auto;
-        aspect-ratio: 1 / 1;
-        /* zoomed out: raise top/bottom (9vh) to zoom out more, lower to zoom in */
-        background: url("images/hero.jpg") center / cover no-repeat;
-        /* fades the photo edges into the page */
-        -webkit-mask-image:
-          linear-gradient(90deg, transparent 0%, #000 38%),
-          linear-gradient(
-            180deg,
-            transparent 0%,
-            #000 22%,
-            #000 78%,
-            transparent 100%
-          );
-        -webkit-mask-composite: source-in;
-        mask-image:
-          linear-gradient(90deg, transparent 0%, #000 38%),
-          linear-gradient(
-            180deg,
-            transparent 0%,
-            #000 22%,
-            #000 78%,
-            transparent 100%
-          );
-        mask-composite: intersect;
-      }
       main {
         flex: 1;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
         width: 100%;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 56px 60px;
+        padding: 0 5vw 40px;
       }
       .content {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        width: min(560px, 100%);
+      }
+      .cup-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cup {
+        height: min(74vh, 720px);
+        width: auto;
+        max-width: 100%;
+        display: block;
+        /* feather the photo edges so the marble melts into the page */
+        -webkit-mask-image: radial-gradient(
+          ellipse closest-side at 50% 50%,
+          #000 80%,
+          transparent 100%
+        );
+        mask-image: radial-gradient(
+          ellipse closest-side at 50% 50%,
+          #000 80%,
+          transparent 100%
+        );
       }
       .logo {
         width: min(380px, 80%);
@@ -167,20 +151,15 @@
       }
       @media (max-width: 800px) {
         main {
-          justify-content: center;
+          grid-template-columns: 1fr;
           padding: 0 24px 40px;
+          gap: 36px;
         }
-        .bg {
-          inset: 0;
-          aspect-ratio: auto;
-          -webkit-mask-image: none;
-          mask-image: none;
+        .cup-wrap {
+          order: -1;
         }
-        .bg::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: rgba(246, 244, 240, 0.72);
+        .cup {
+          height: 46vh;
         }
       }
       @media (max-width: 560px) {
@@ -197,8 +176,6 @@
     </style>
   </head>
   <body>
-    <!-- Background photo: replace images/hero.jpg with a high-res version for best sharpness -->
-    <div class="bg" role="img" aria-label="Iced coffee in a glass"></div>
     <header></header>
 
     <main>
@@ -210,6 +187,13 @@
           <a href="/locations">Locations</a>
           <a href="/order">Order</a>
         </nav>
+      </div>
+      <div class="cup-wrap">
+        <img
+          class="cup"
+          src="images/hero-marble.jpg"
+          alt="Latte in an amai cup"
+        />
       </div>
     </main>
 
