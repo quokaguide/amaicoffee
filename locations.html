@@ -32,6 +32,9 @@
         text-decoration: none;
       }
       header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 28px 40px;
         font-size: 12px;
         letter-spacing: 0.14em;
@@ -111,6 +114,23 @@
         text-decoration: underline;
         text-underline-offset: 3px;
       }
+      .btn {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 11px 22px;
+        border: 1px solid var(--ink);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn:hover {
+        background: var(--ink);
+        color: var(--bg);
+      }
       @media (max-width: 560px) {
         header {
           padding: 20px;
@@ -125,7 +145,7 @@
     </style>
   </head>
   <body>
-    <header><a href="/">&larr; Home</a></header>
+    <header><a href="/">&larr; Home</a><a href="/order">Order Now</a></header>
     <main>
       <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
       <h1>Our Locations</h1>
@@ -149,6 +169,13 @@
             ><br />
             <a href="tel:+13103103797">(310) 310-3797</a>
           </div>
+          <a
+            class="btn"
+            href="https://amaisantamonica.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
         <li>
           <a
@@ -169,6 +196,13 @@
             ><br />
             <a href="tel:+18182456600">(818) 245-6600</a>
           </div>
+          <a
+            class="btn"
+            href="https://amaiglendale.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
         <li>
           <a
@@ -189,6 +223,13 @@
             ><br />
             <a href="tel:+14242372372">(424) 237-2372</a>
           </div>
+          <a
+            class="btn"
+            href="https://amaiteacafe.com/"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
       </ul>
     </main>
