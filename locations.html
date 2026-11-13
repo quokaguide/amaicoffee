@@ -131,6 +131,16 @@
         background: var(--ink);
         color: var(--bg);
       }
+      .plain:hover::after {
+        width: 0;
+      }
+      .soon {
+        margin-top: 18px;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
       @media (max-width: 560px) {
         header {
           padding: 20px;
@@ -230,6 +240,47 @@
             rel="noopener"
             >Order Now</a
           >
+        </li>
+        <li>
+          <a
+            class="city"
+            href="https://amaihuntingtonbeach.square.site/?location=L1HZJ0J1RMFHA"
+            target="_blank"
+            rel="noopener"
+            >Huntington Beach</a
+          >
+          <div class="info">
+            <a
+              class="addr"
+              data-addr="19738 Beach Blvd, Huntington Beach, CA 92648"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >19738 Beach Blvd, Huntington Beach, CA 92648</a
+            >
+          </div>
+          <a
+            class="btn"
+            href="https://amaihuntingtonbeach.square.site/?location=L1HZJ0J1RMFHA"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
+        </li>
+        <li>
+          <span class="city plain">Sherman Oaks</span>
+          <div class="info">
+            <a
+              class="addr"
+              data-addr="12914 Riverside Dr, Sherman Oaks, CA 91423"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >12914 Riverside Dr, Sherman Oaks, CA 91423</a
+            ><br />
+            <a href="tel:+18186161050">(818) 616-1050</a>
+          </div>
+          <p class="soon">Online ordering coming soon</p>
         </li>
       </ul>
     </main>
