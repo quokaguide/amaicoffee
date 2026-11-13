@@ -72,38 +72,53 @@
       }
       li {
         border-bottom: 1px solid var(--line);
-      }
-      li a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 26px 8px;
+        text-align: left;
+      }
+      .city {
+        display: inline-block;
         font-size: 15px;
         font-weight: 500;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        transition:
-          padding 0.2s,
-          color 0.2s;
+        position: relative;
       }
-      li a span.arrow {
+      .city::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 1px;
+        background: var(--ink);
+        transition: width 0.25s;
+      }
+      .city:hover::after {
+        width: 100%;
+      }
+      .info {
+        margin-top: 12px;
+        font-size: 12.5px;
+        line-height: 1.9;
+        letter-spacing: 0.08em;
         color: var(--muted);
-        transition:
-          transform 0.2s,
-          color 0.2s;
       }
-      li a:hover {
-        padding-left: 16px;
+      .info a {
+        transition: color 0.2s;
       }
-      li a:hover span.arrow {
-        transform: translateX(4px);
+      .info a:hover {
         color: var(--ink);
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
       @media (max-width: 560px) {
         header {
           padding: 20px;
         }
-        li a {
+        li {
+          padding: 22px 4px;
+        }
+        .city {
           font-size: 13px;
         }
       }
@@ -117,26 +132,75 @@
       <ul>
         <li>
           <a
+            class="city"
             href="https://amaisantamonica.square.site/"
             target="_blank"
             rel="noopener"
-            >Santa Monica <span class="arrow">&rarr;</span></a
+            >Santa Monica</a
           >
+          <div class="info">
+            <a
+              class="addr"
+              data-addr="1701 Pico Blvd, Santa Monica, CA 90405"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >1701 Pico Blvd, Santa Monica, CA 90405</a
+            ><br />
+            <a href="tel:+13103103797">(310) 310-3797</a>
+          </div>
         </li>
         <li>
           <a
+            class="city"
             href="https://amaiglendale.square.site/"
             target="_blank"
             rel="noopener"
-            >Glendale <span class="arrow">&rarr;</span></a
+            >Glendale</a
           >
+          <div class="info">
+            <a
+              class="addr"
+              data-addr="4106 San Fernando Rd #H, Glendale, CA 91204"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >4106 San Fernando Rd #H, Glendale, CA 91204</a
+            ><br />
+            <a href="tel:+18182456600">(818) 245-6600</a>
+          </div>
         </li>
         <li>
-          <a href="https://amaiteacafe.com/" target="_blank" rel="noopener"
-            >Torrance <span class="arrow">&rarr;</span></a
+          <a
+            class="city"
+            href="https://amaiteacafe.com/"
+            target="_blank"
+            rel="noopener"
+            >Torrance</a
           >
+          <div class="info">
+            <a
+              class="addr"
+              data-addr="20210 Anza Ave, Torrance, CA 90503"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              >20210 Anza Ave, Torrance, CA 90503</a
+            ><br />
+            <a href="tel:+14242372372">(424) 237-2372</a>
+          </div>
         </li>
       </ul>
     </main>
+    <script>
+      // Opens Apple Maps on iPhone/iPad/Mac, Google Maps everywhere else (and its app on Android)
+      var apple = /iPhone|iPad|iPod|Mac/.test(navigator.userAgent);
+      document.querySelectorAll("a.addr").forEach(function (a) {
+        var q = encodeURIComponent(a.dataset.addr);
+        a.href = apple
+          ? "https://maps.apple.com/?q=" + q
+          : "https://www.google.com/maps/search/?api=1&query=" + q;
+      });
+    </script>
   </body>
 </html>
