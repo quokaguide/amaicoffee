@@ -6,9 +6,9 @@
     <title>AMAI</title>
     <style>
       :root {
-        --bg: #dddedc;
+        --bg: #dfe0de;
         --ink: #1a1a1a;
-        --muted: #6b6d6a;
+        --muted: #4f514e;
         --line: #bfc1be;
       }
       * {
@@ -20,8 +20,18 @@
       body {
         height: 100%;
       }
+      html {
+        background: #dfe0de;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: url(images/table-sharp.jpg) center top/max(100vw, 2560px)
+          auto no-repeat;
+      }
       body {
-        background: var(--bg);
         color: var(--ink);
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         display: flex;
@@ -53,6 +63,12 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        justify-self: center;
+        width: min(520px, 100%);
+        padding: 56px 40px 24px;
+        background: #ffffff;
+        border: 1px solid #e3e4e2;
+        box-shadow: 0 18px 50px rgba(40, 42, 40, 0.1);
       }
       .cup-wrap {
         display: flex;
@@ -60,19 +76,19 @@
         align-items: center;
       }
       .cup {
-        height: min(74vh, 720px);
+        height: min(76vh, 740px);
         width: auto;
         max-width: 100%;
         display: block;
-        /* feather the photo edges so the marble melts into the page */
+        /* feather the photo edges so its marble melts into the page marble */
         -webkit-mask-image: radial-gradient(
           ellipse closest-side at 50% 50%,
-          #000 80%,
+          #000 58%,
           transparent 100%
         );
         mask-image: radial-gradient(
           ellipse closest-side at 50% 50%,
-          #000 80%,
+          #000 58%,
           transparent 100%
         );
       }
@@ -97,6 +113,7 @@
         font-family: Georgia, "Times New Roman", serif;
         font-style: italic;
         font-size: 22px;
+        font-weight: 600;
         color: var(--ink);
       }
       nav {
@@ -109,7 +126,7 @@
       nav a {
         padding: 26px 8px;
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--ink);
@@ -155,11 +172,16 @@
           padding: 0 24px 40px;
           gap: 36px;
         }
+        .content {
+          padding: 40px 28px 16px;
+          width: 100%;
+          max-width: 440px;
+        }
         .cup-wrap {
           order: -1;
         }
         .cup {
-          height: 46vh;
+          height: 48vh;
         }
       }
       @media (max-width: 560px) {
@@ -171,6 +193,11 @@
           flex-direction: column;
           gap: 8px;
           align-items: center;
+        }
+      }
+      @media (max-width: 800px) {
+        body::before {
+          background-size: 1400px auto;
         }
       }
     </style>
@@ -185,7 +212,7 @@
 
         <nav>
           <a href="/locations">Locations</a>
-          <a href="/order">Order</a>
+          <a href="/about">About</a>
         </nav>
       </div>
       <div class="cup-wrap">

@@ -6,7 +6,7 @@
     <title>Order | AMAI</title>
     <style>
       :root {
-        --bg: #dddedc;
+        --bg: #e6e8e6;
         --ink: #1a1a1a;
         --muted: #6b6d6a;
         --line: #bfc1be;
@@ -16,8 +16,17 @@
         margin: 0;
         padding: 0;
       }
+      html {
+        background: #e6e8e6;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: url(images/marble-bg.jpg) center/cover no-repeat;
+      }
       body {
-        background: var(--bg);
         color: var(--ink);
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         min-height: 100vh;

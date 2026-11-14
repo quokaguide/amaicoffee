@@ -6,9 +6,9 @@
     <title>Locations | AMAI</title>
     <style>
       :root {
-        --bg: #dddedc;
+        --bg: #dfe0de;
         --ink: #1a1a1a;
-        --muted: #6b6d6a;
+        --muted: #3f413e;
         --line: #bfc1be;
       }
       * {
@@ -16,8 +16,20 @@
         margin: 0;
         padding: 0;
       }
+      html {
+        background: #dfe0de;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(rgba(230, 232, 230, 0.6), rgba(230, 232, 230, 0.6)),
+          url(images/table-sharp.jpg) center top/max(100vw, 2560px) auto
+            no-repeat;
+      }
       body {
-        background: var(--bg);
         color: var(--ink);
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         min-height: 100vh;
@@ -34,6 +46,7 @@
         align-items: center;
         padding: 28px 40px;
         font-size: 12px;
+        font-weight: 600;
         letter-spacing: 0.14em;
         text-transform: uppercase;
       }
@@ -59,7 +72,7 @@
       }
       h1 {
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: 0.3em;
         text-transform: uppercase;
         color: var(--muted);
@@ -78,7 +91,7 @@
       .city {
         display: inline-block;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: 700;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         position: relative;
@@ -98,7 +111,8 @@
       }
       .info {
         margin-top: 12px;
-        font-size: 12.5px;
+        font-size: 13px;
+        font-weight: 600;
         line-height: 1.9;
         letter-spacing: 0.08em;
         color: var(--muted);
@@ -111,12 +125,30 @@
         text-decoration: underline;
         text-underline-offset: 3px;
       }
+      .btn {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 11px 22px;
+        border: 1px solid var(--ink);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn:hover {
+        background: var(--ink);
+        color: var(--bg);
+      }
       .plain:hover::after {
         width: 0;
       }
       .soon {
         margin-top: 18px;
         font-size: 11px;
+        font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--muted);
@@ -130,6 +162,11 @@
         }
         .city {
           font-size: 13px;
+        }
+      }
+      @media (max-width: 800px) {
+        body::before {
+          background-size: 1400px auto;
         }
       }
     </style>
@@ -159,6 +196,13 @@
             ><br />
             <a href="tel:+13103103797">(310) 310-3797</a>
           </div>
+          <a
+            class="btn"
+            href="https://amaisantamonica.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
         <li>
           <a
@@ -179,6 +223,13 @@
             ><br />
             <a href="tel:+18182456600">(818) 245-6600</a>
           </div>
+          <a
+            class="btn"
+            href="https://amaiglendale.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
         <li>
           <a
@@ -199,6 +250,13 @@
             ><br />
             <a href="tel:+14242372372">(424) 237-2372</a>
           </div>
+          <a
+            class="btn"
+            href="https://amaiteacafe.com/"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
         <li>
           <a
@@ -218,6 +276,13 @@
               >19738 Beach Blvd, Huntington Beach, CA 92648</a
             >
           </div>
+          <a
+            class="btn"
+            href="https://amaihuntingtonbeach.square.site/?location=L1HZJ0J1RMFHA"
+            target="_blank"
+            rel="noopener"
+            >Order Now</a
+          >
         </li>
         <li>
           <span class="city plain">Sherman Oaks</span>

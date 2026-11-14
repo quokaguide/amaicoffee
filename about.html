@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | AMAI</title>
+    <style>
+      :root {
+        --bg: #dfe0de;
+        --ink: #1a1a1a;
+        --muted: #4f514e;
+        --line: #bfc1be;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        background: #dfe0de;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(rgba(230, 232, 230, 0.6), rgba(230, 232, 230, 0.6)),
+          url(images/table-sharp.jpg) center top/max(100vw, 2560px) auto
+            no-repeat;
+      }
+      body {
+        color: var(--ink);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 40px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      header a:hover {
+        opacity: 0.6;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 24px 80px;
+        text-align: center;
+      }
+      .logo {
+        width: min(200px, 50%);
+        margin-bottom: 40px;
+      }
+      .logo img {
+        width: 100%;
+        display: block;
+      }
+      h1 {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+      .card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        width: min(960px, 100%);
+        padding: 48px;
+        background: #fff;
+        border: 1px solid #e3e4e2;
+        box-shadow: 0 18px 50px rgba(40, 42, 40, 0.1);
+        text-align: left;
+      }
+      .photo {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: #eceeec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+        padding: 20px;
+      }
+      .photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .text h2 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 28px;
+        margin-bottom: 22px;
+      }
+      .text p {
+        font-size: 15px;
+        line-height: 1.85;
+        letter-spacing: 0.02em;
+        color: #2b2c2a;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 800px) {
+        .card {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding: 28px;
+        }
+      }
+      @media (max-width: 560px) {
+        header {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/">&larr; Home</a><a href="/locations">Locations</a>
+    </header>
+    <main>
+      <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
+      <h1>Our Story</h1>
+      <div class="card">
+        <!-- Put your photo at images/about.jpg -->
+        <div class="photo">
+          Your photo here
+          <img
+            src="images/about.jpg"
+            alt="About AMAI"
+            onerror="this.remove()"
+          />
+        </div>
+        <div class="text">
+          <h2>Asian inspired &amp; thoughtfully crafted</h2>
+          <p>
+            Amai means sweet in Japanese. Founded in 2021 our third spaces are
+            asian owned and pay homage to our cultures in our recipes and
+            sourcing of ingredients. We started with a deep love for coffee,
+            matcha, good design, and integrity in all things hospitality. We
+            believe simplicity is key and we keep everything simple and of the
+            highest quality.
+          </p>
+          <p>
+        
+      </div>
+    </main>
+  </body>
+</html>
