@@ -41,13 +41,21 @@
         text-decoration: none;
       }
       header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 28px 40px;
         font-size: 12px;
+        font-weight: 600;
         letter-spacing: 0.14em;
         text-transform: uppercase;
+        background: rgba(238, 240, 238, 0.94);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
       }
       header a:hover {
         opacity: 0.6;
@@ -58,52 +66,45 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 0 24px 80px;
-        text-align: center;
+        padding: 56px 24px 90px;
       }
       .logo {
         width: min(200px, 50%);
-        margin-bottom: 40px;
+        margin-bottom: 64px;
       }
       .logo img {
         width: 100%;
         display: block;
       }
-      h1 {
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 28px;
-      }
-      .card {
+
+      /* arched photo overlapped by a white story panel */
+      .stage {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
         align-items: center;
-        width: min(960px, 100%);
-        padding: 48px;
-        background: #fff;
-        border: 1px solid #e3e4e2;
-        box-shadow: 0 18px 50px rgba(40, 42, 40, 0.1);
-        text-align: left;
+        width: min(1060px, 100%);
       }
-      .photo {
+      .arch-wrap {
         position: relative;
-        aspect-ratio: 4/5;
-        background: #eceeec;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--muted);
-        text-align: center;
-        padding: 20px;
+        z-index: 1;
       }
-      .photo img {
+      .arch-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform: translate(-20px, 20px);
+        border: 1px solid var(--ink);
+        border-radius: 999px 999px 0 0;
+        z-index: -1;
+      }
+      .arch {
+        position: relative;
+        aspect-ratio: 3/4;
+        border-radius: 999px 999px 0 0;
+        overflow: hidden;
+        background: #e7e9e7;
+      }
+      .arch img {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -111,30 +112,104 @@
         object-fit: cover;
         display: block;
       }
-      .text h2 {
+      .panel {
+        position: relative;
+        z-index: 2;
+        margin-left: -72px;
+        padding: 60px 56px 56px;
+        background: #fff;
+        border: 1px solid #e3e4e2;
+        box-shadow: 0 24px 60px rgba(40, 42, 40, 0.12);
+      }
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 22px;
+      }
+      .panel h2 {
         font-family: Georgia, "Times New Roman", serif;
         font-style: italic;
         font-weight: 600;
-        font-size: 28px;
-        margin-bottom: 22px;
+        font-size: clamp(34px, 4.2vw, 54px);
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+        margin-bottom: 28px;
       }
-      .text p {
+      .panel p {
         font-size: 15px;
         line-height: 1.85;
         letter-spacing: 0.02em;
         color: #2b2c2a;
         margin-bottom: 16px;
       }
+      .panel p.lede {
+        font-size: 17px;
+        color: var(--ink);
+      }
+      .rule {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 30px 0 22px;
+        font-size: 15px;
+      }
+      .rule::before,
+      .rule::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+      }
+      .where {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        line-height: 2;
+        color: var(--muted);
+        margin-bottom: 0 !important;
+      }
+      .more {
+        display: inline-block;
+        margin-top: 22px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--ink);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      .more:hover {
+        opacity: 0.6;
+      }
+
       @media (max-width: 800px) {
-        .card {
+        main {
+          padding: 40px 20px 70px;
+        }
+        .logo {
+          margin-bottom: 44px;
+        }
+        .stage {
           grid-template-columns: 1fr;
-          gap: 28px;
-          padding: 28px;
+        }
+        .arch-wrap {
+          width: 78%;
+          margin: 0 auto 0 8%;
+        }
+        .panel {
+          margin: -64px 0 0 0;
+          width: 92%;
+          justify-self: end;
+          padding: 44px 28px 36px;
         }
       }
       @media (max-width: 560px) {
         header {
-          padding: 20px;
+          padding: 16px 20px;
         }
       }
       /* phones: background scrolls with the page */
@@ -157,29 +232,38 @@
     </header>
     <main>
       <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
-      <h1>About</h1>
-      <div class="card">
-        <!-- Put your photo at images/about.jpg -->
-        <div class="photo">
-          Your photo here
-          <img
-            src="images/about.jpg"
-            alt="About AMAI"
-            onerror="this.remove()"
-          />
+
+      <section class="stage">
+        <div class="arch-wrap">
+          <!-- Put your photo at images/about.jpg -->
+          <div class="arch">
+            <img
+              src="images/about.jpg"
+              alt="Inside amai"
+              onerror="this.remove()"
+            />
+          </div>
         </div>
-        <div class="text">
+
+        <article class="panel">
+          <p class="eyebrow">Our story</p>
           <h2>Asian inspired &amp; thoughtfully crafted</h2>
-          <p>
-            Amai means sweet in Japanese. Founded in 2021 our third spaces are
-            asian owned and pay homage to our cultures in our recipes and
-            sourcing of ingredients. We started with a deep love for coffee,
-            matcha, good design, and integrity in all things hospitality. We
-            believe simplicity is key and we keep everything simple and of the
-            highest quality.
+          <p class="lede">
+            Write your story here: how amai started, what inspired the menu, and
+            what you want every cup to feel like.
           </p>
-        </div>
-      </div>
+          <p>
+            Add a second paragraph about your team, your ingredients, or what
+            makes each location special.
+          </p>
+          <div class="rule">&#10022;</div>
+          <p class="where">
+            Santa Monica &middot; Glendale &middot; Torrance &middot; Huntington
+            Beach &middot; Sherman Oaks
+          </p>
+          <a class="more" href="/locations">Find a location &rarr;</a>
+        </article>
+      </section>
     </main>
   </body>
 </html>

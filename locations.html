@@ -53,22 +53,53 @@
       header a:hover {
         opacity: 0.6;
       }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        row-gap: 10px;
+        padding: 18px 40px 16px;
+        background: rgba(238, 240, 238, 0.94);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      header .hl {
+        justify-self: start;
+      }
+      header .hr {
+        justify-self: end;
+      }
+      header .hlogo {
+        grid-column: 1 / -1;
+        justify-self: center;
+        display: block;
+        width: 120px;
+        line-height: 0;
+      }
+      header .hlogo img {
+        width: 100%;
+        display: block;
+      }
+      header .htitle {
+        grid-column: 1 / -1;
+        justify-self: center;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+      }
       main {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 0 24px 80px;
+        padding: 36px 24px 80px;
         text-align: center;
-      }
-      .logo {
-        width: min(200px, 50%);
-        margin-bottom: 40px;
-      }
-      .logo img {
-        width: 100%;
-        display: block;
       }
       h1 {
         font-size: 12px;
@@ -155,7 +186,11 @@
       }
       @media (max-width: 560px) {
         header {
-          padding: 20px;
+          padding: 12px 20px 12px;
+          row-gap: 6px;
+        }
+        header .hlogo {
+          width: 96px;
         }
         li {
           padding: 22px 4px;
@@ -179,10 +214,13 @@
     </style>
   </head>
   <body>
-    <header><a href="/">&larr; Home</a><a href="/order">Order Now</a></header>
+    <header>
+      <a class="hl" href="/">&larr; Home</a
+      ><a class="hr" href="/order">Order Now</a
+      ><a class="hlogo" href="/"><img src="images/logo.png" alt="AMAI" /></a
+      ><span class="htitle">Our Locations</span>
+    </header>
     <main>
-      <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
-      <h1>Our Locations</h1>
       <ul>
         <li>
           <a
