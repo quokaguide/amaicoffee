@@ -6,10 +6,10 @@
     <title>AMAI</title>
     <style>
       :root {
-        --bg: #dfe0de;
+        --bg: #faf9f6;
         --ink: #1a1a1a;
-        --muted: #4f514e;
-        --line: #bfc1be;
+        --muted: #8a8a86;
+        --line: #d9d7d2;
       }
       * {
         box-sizing: border-box;
@@ -20,102 +20,80 @@
       body {
         height: 100%;
       }
-      html {
-        background: #dfe0de;
-      }
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background: url(images/table-sharp.jpg) center top/max(100vw, 2560px)
-          auto no-repeat;
-      }
       body {
-        color: var(--ink);
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        position: relative;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
-      }
-      header {
-        display: flex;
-        justify-content: flex-end;
-        padding: 28px 40px;
-        font-size: 12px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-      header a {
         color: var(--ink);
-        text-decoration: none;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: linear-gradient(
+          180deg,
+          #faf9f6 0%,
+          #f9f7f3 70%,
+          #f3eee8 100%
+        );
+        overflow-x: hidden;
+      }
+
+      /* full-height photo on the right that fades into the cream page */
+      .photo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 62%;
+        background: url(images/hero.jpg) 30% 50% / cover no-repeat;
+        -webkit-mask-image:
+          linear-gradient(to right, transparent 0%, #000 42%),
+          linear-gradient(to bottom, #000 72%, transparent 100%);
+        -webkit-mask-composite: source-in;
+        mask-image:
+          linear-gradient(to right, transparent 0%, #000 42%),
+          linear-gradient(to bottom, #000 72%, transparent 100%);
+        mask-composite: intersect;
+        z-index: 0;
+      }
+
+      header {
+        position: relative;
+        z-index: 2;
+        height: 70px;
       }
       main {
+        position: relative;
+        z-index: 2;
         flex: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
         align-items: center;
-        width: 100%;
         padding: 0 5vw 40px;
       }
       .content {
+        width: min(520px, 100%);
+        margin-left: clamp(40px, 8vw, 150px);
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        justify-self: center;
-        width: min(520px, 100%);
-      }
-      .cup-wrap {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .cup {
-        height: min(76vh, 740px);
-        width: auto;
-        max-width: 100%;
-        display: block;
-        /* feather the photo edges so its marble melts into the page marble */
-        -webkit-mask-image: radial-gradient(
-          ellipse closest-side at 50% 50%,
-          #000 58%,
-          transparent 100%
-        );
-        mask-image: radial-gradient(
-          ellipse closest-side at 50% 50%,
-          #000 58%,
-          transparent 100%
-        );
       }
       .logo {
         width: min(380px, 80%);
         line-height: 0;
-        opacity: 0.85;
       }
       .logo img {
         width: 100%;
         height: auto;
         display: block;
       }
-      .sub {
-        margin-top: 26px;
-        font-size: 12px;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
       .tag {
-        margin-top: 40px;
+        margin-top: 34px;
         font-family: Georgia, "Times New Roman", serif;
         font-style: italic;
         font-size: 22px;
-        font-weight: 600;
         color: var(--ink);
-        opacity: 0.85;
       }
       nav {
-        margin-top: 56px;
+        margin-top: 52px;
         width: min(360px, 100%);
         border-top: 1px solid var(--line);
         display: grid;
@@ -124,13 +102,11 @@
       nav a {
         padding: 26px 8px;
         font-size: 13px;
-        font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--ink);
         text-decoration: none;
         position: relative;
-        transition: color 0.2s;
       }
       nav a::after {
         content: "";
@@ -148,7 +124,10 @@
         width: 36px;
         left: calc(50% - 18px);
       }
+
       footer {
+        position: relative;
+        z-index: 2;
         padding: 24px 40px;
         display: flex;
         justify-content: space-between;
@@ -164,27 +143,41 @@
       footer a:hover {
         color: var(--ink);
       }
+
       @media (max-width: 800px) {
+        html,
+        body {
+          height: auto;
+        }
+        .photo {
+          width: 100%;
+          height: 55vh;
+          bottom: auto;
+          background-position: 40% 40%;
+          -webkit-mask-image: linear-gradient(
+            to bottom,
+            #000 55%,
+            transparent 100%
+          );
+          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          -webkit-mask-composite: source-over;
+          mask-composite: add;
+        }
+        header {
+          height: 40vh;
+        }
         main {
-          grid-template-columns: 1fr;
           padding: 0 24px 40px;
-          gap: 36px;
+          justify-content: center;
         }
         .content {
-          width: 100%;
-          max-width: 440px;
+          margin-left: 0;
         }
-        .cup-wrap {
-          order: -1;
-        }
-        .cup {
-          height: 48vh;
+        .logo {
+          width: min(300px, 78%);
         }
       }
       @media (max-width: 560px) {
-        header {
-          padding: 20px;
-        }
         footer {
           padding: 20px;
           flex-direction: column;
@@ -192,24 +185,14 @@
           align-items: center;
         }
       }
-      /* phones: background scrolls with the page so the cup photo and table stay locked together */
-      @media (max-width: 800px) {
-        html,
-        body {
-          height: auto;
-        }
-        body {
-          position: relative;
-        }
-        body::before {
-          position: absolute;
-          background: url(images/table-mobile.jpg) center top / 100vh auto
-            repeat-y;
-        }
-      }
     </style>
   </head>
   <body>
+    <div
+      class="photo"
+      role="img"
+      aria-label="Iced coffee in a glass in morning light"
+    ></div>
     <header></header>
 
     <main>
@@ -221,13 +204,6 @@
           <a href="/locations">Locations</a>
           <a href="/about">About</a>
         </nav>
-      </div>
-      <div class="cup-wrap">
-        <img
-          class="cup"
-          src="images/hero-marble.jpg"
-          alt="Latte in an amai cup"
-        />
       </div>
     </main>
 

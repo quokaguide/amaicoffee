@@ -6,10 +6,10 @@
     <title>Contact | AMAI</title>
     <style>
       :root {
-        --bg: #dfe0de;
+        --bg: #faf9f6;
         --ink: #1a1a1a;
         --muted: #4f514e;
-        --line: #bfc1be;
+        --line: #d9d7d2;
       }
       * {
         box-sizing: border-box;
@@ -17,17 +17,7 @@
         padding: 0;
       }
       html {
-        background: #dfe0de;
-      }
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background:
-          linear-gradient(rgba(230, 232, 230, 0.6), rgba(230, 232, 230, 0.6)),
-          url(images/table-sharp.jpg) center top/max(100vw, 2560px) auto
-            no-repeat;
+        background: #faf9f6;
       }
       body {
         color: var(--ink);
@@ -35,6 +25,12 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        background: linear-gradient(
+          180deg,
+          #faf9f6 0%,
+          #f9f7f3 70%,
+          #f3eee8 100%
+        );
       }
       a {
         color: inherit;
@@ -52,7 +48,7 @@
         font-weight: 600;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        background: rgba(238, 240, 238, 0.94);
+        background: rgba(250, 249, 246, 0.94);
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--line);
@@ -230,17 +226,6 @@
           gap: 0;
         }
       }
-      @media (max-width: 800px) {
-        body {
-          position: relative;
-        }
-        body::before {
-          position: absolute;
-          background:
-            linear-gradient(rgba(230, 232, 230, 0.6), rgba(230, 232, 230, 0.6)),
-            url(images/table-mobile.jpg) center top / 100vh auto repeat-y;
-        }
-      }
     </style>
   </head>
   <body>
@@ -250,7 +235,7 @@
     <main>
       <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
       <h1>Contact</h1>
-      <p class="sub">Questions or Just Saying Hi.</p>
+      <p class="sub">Questions, catering, or just saying hi.</p>
 
       <div class="card" id="card">
         <form id="form" action="https://api.web3forms.com/submit" method="POST">
