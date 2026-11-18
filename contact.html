@@ -69,51 +69,41 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 56px 24px 90px;
-        text-align: center;
+        padding: 36px 24px 90px;
       }
       .logo {
-        width: min(200px, 50%);
-        margin-bottom: 40px;
+        width: min(150px, 40%);
+        margin-bottom: 46px;
       }
       .logo img {
         width: 100%;
         display: block;
       }
+      .wrap {
+        width: min(580px, 100%);
+      }
       h1 {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.3em;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
         text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 10px;
-      }
-      .sub {
-        font-family: "Gloock", Georgia, "Times New Roman", serif;
-        font-weight: 600;
-        font-size: 20px;
-        margin-bottom: 34px;
-      }
-
-      .card {
-        width: min(560px, 100%);
-        padding: 44px 44px 40px;
-        background: #fff;
-        border: 1px solid #e3e4e2;
-        box-shadow: 0 24px 60px rgba(40, 42, 40, 0.12);
-        text-align: left;
+        color: var(--ink);
+        margin-bottom: 30px;
       }
       .field {
-        margin-bottom: 26px;
+        margin-bottom: 22px;
       }
       label {
         display: block;
-        font-size: 10.5px;
-        font-weight: 700;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.02em;
         color: var(--muted);
-        margin-bottom: 8px;
+        margin-bottom: 7px;
+      }
+      label b {
+        color: #c4161c;
+        font-weight: 400;
+        margin-right: 3px;
       }
       input,
       select,
@@ -122,35 +112,32 @@
         font: inherit;
         font-size: 16px;
         color: var(--ink);
-        background: transparent;
-        border: 0;
-        border-bottom: 1px solid var(--ink);
-        border-radius: 0;
-        padding: 8px 0 10px;
+        background: #fff;
+        border: 1px solid #dcdad5;
+        border-radius: 2px;
+        padding: 0 14px;
+        height: 40px;
         outline: none;
         -webkit-appearance: none;
         appearance: none;
+        transition: border-color 0.2s;
       }
       select {
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='1.5'/%3E%3C/svg%3E")
-          no-repeat right 4px center;
-        padding-right: 24px;
+        background: #fff
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='14' viewBox='0 0 10 14'%3E%3Cpath d='M5 1L1.5 5.5h7zM5 13L1.5 8.5h7z' fill='%231a1a1a'/%3E%3C/svg%3E")
+          no-repeat right 14px center;
+        padding-right: 36px;
       }
       textarea {
-        min-height: 120px;
+        height: 150px;
+        padding: 12px 14px;
         resize: vertical;
         line-height: 1.6;
       }
       input:focus,
       select:focus,
       textarea:focus {
-        border-bottom-width: 2px;
-        padding-bottom: 9px;
-      }
-      .row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
+        border-color: var(--ink);
       }
       .hp {
         position: absolute;
@@ -162,23 +149,23 @@
       button {
         width: 100%;
         margin-top: 6px;
-        padding: 16px 22px;
+        height: 44px;
         font: inherit;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.24em;
+        font-size: 16px;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
-        color: #fff;
-        background: var(--ink);
-        border: 1px solid var(--ink);
+        color: var(--ink);
+        background: transparent;
+        border: 3px solid var(--ink);
+        border-radius: 8px;
         cursor: pointer;
         transition:
           background 0.2s,
           color 0.2s;
       }
       button:hover {
-        background: #fff;
-        color: var(--ink);
+        background: var(--ink);
+        color: #fff;
       }
       button:disabled {
         opacity: 0.6;
@@ -186,9 +173,8 @@
       }
       .msg {
         margin-top: 18px;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.6;
-        font-weight: 600;
         text-align: center;
       }
       .msg.err {
@@ -196,21 +182,22 @@
       }
       .thanks {
         display: none;
-        text-align: center;
-        padding: 30px 0 20px;
+        padding: 20px 0;
       }
       .thanks h2 {
-        font-family: "Gloock", Georgia, "Times New Roman", serif;
-        font-weight: 600;
-        font-size: 32px;
+        font-weight: 400;
+        font-size: 22px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
         margin-bottom: 14px;
       }
       .thanks p {
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1.8;
         color: #2b2c2a;
       }
-      .done form {
+      .done form,
+      .done .ttl {
         display: none;
       }
       .done .thanks {
@@ -222,14 +209,10 @@
           padding: 16px 20px;
         }
         main {
-          padding: 40px 18px 70px;
+          padding: 28px 20px 70px;
         }
-        .card {
-          padding: 32px 24px 30px;
-        }
-        .row {
-          grid-template-columns: 1fr;
-          gap: 0;
+        .logo {
+          margin-bottom: 34px;
         }
       }
 
@@ -253,10 +236,10 @@
     </header>
     <main>
       <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
-      <h1>Contact</h1>
-      <p class="sub">Questions or Just Saying Hi.</p>
 
-      <div class="card" id="card">
+      <div class="wrap" id="card">
+        <h1 class="ttl">Send us a message</h1>
+
         <form id="form" action="https://api.web3forms.com/submit" method="POST">
           <!-- Web3Forms access key (public, safe to keep in the page) -->
           <input
@@ -283,24 +266,28 @@
             autocomplete="off"
           />
 
-          <div class="row">
-            <div class="field">
-              <label for="name">Name</label
-              ><input
-                id="name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="phone">Phone (optional)</label
-              ><input id="phone" name="phone" type="tel" autocomplete="tel" />
-            </div>
+          <div class="field">
+            <label for="first"><b>*</b>First Name</label
+            ><input
+              id="first"
+              name="first_name"
+              type="text"
+              autocomplete="given-name"
+              required
+            />
           </div>
           <div class="field">
-            <label for="email">Email</label
+            <label for="last"><b>*</b>Last Name</label
+            ><input
+              id="last"
+              name="last_name"
+              type="text"
+              autocomplete="family-name"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="email"><b>*</b>Email</label
             ><input
               id="email"
               name="email"
@@ -310,9 +297,13 @@
             />
           </div>
           <div class="field">
-            <label for="location">Which location?</label>
+            <label for="phone">Phone Number</label
+            ><input id="phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="location">Location</label>
             <select id="location" name="location">
-              <option>Not sure / General</option>
+              <option value="" selected></option>
               <option>Santa Monica</option>
               <option>Glendale</option>
               <option>Torrance</option>
@@ -321,11 +312,22 @@
             </select>
           </div>
           <div class="field">
-            <label for="message">Message</label
+            <label for="topic"><b>*</b>Subject</label>
+            <select id="topic" name="topic" required>
+              <option value="" selected></option>
+              <option>General question</option>
+              <option>Catering</option>
+              <option>Feedback</option>
+              <option>Careers</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message"><b>*</b>Message</label
             ><textarea id="message" name="message" required></textarea>
           </div>
 
-          <button type="submit" id="send">Send message</button>
+          <button type="submit" id="send">Submit</button>
           <p class="msg" id="msg" role="status"></p>
         </form>
 
@@ -358,6 +360,11 @@
         new FormData(form).forEach(function (v, k) {
           data[k] = v;
         });
+        data.name = (data.first_name + " " + data.last_name).trim();
+        data.subject =
+          "amai website: " +
+          data.topic +
+          (data.location ? " (" + data.location + ")" : "");
         fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
@@ -384,7 +391,7 @@
           })
           .then(function () {
             btn.disabled = false;
-            btn.textContent = "Send message";
+            btn.textContent = "Submit";
           });
       });
     </script>
