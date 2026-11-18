@@ -192,9 +192,59 @@
           align-items: center;
         }
       }
+
+      /* splash intro: logo alone on cream, then fades to the page */
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #faf9f6;
+        cursor: pointer;
+        transition:
+          opacity 0.9s ease,
+          visibility 0s linear 0.9s;
+      }
+      #splash img {
+        width: min(340px, 62vw);
+        height: auto;
+        opacity: 0;
+        transform: translateY(6px);
+        animation: splashIn 1s ease 0.2s forwards;
+      }
+      #splash.out {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .seen #splash {
+        display: none;
+      }
+      @keyframes splashIn {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #splash {
+          display: none;
+        }
+      }
     </style>
+    <script>
+      // skip the splash if it was already shown this visit
+      try {
+        if (sessionStorage.getItem("amaiSplash"))
+          document.documentElement.classList.add("seen");
+      } catch (e) {}
+    </script>
   </head>
   <body>
+    <div id="splash" aria-hidden="true">
+      <img src="images/logo.png" alt="" />
+    </div>
     <div
       class="photo"
       role="img"
@@ -205,6 +255,7 @@
     <main>
       <div class="content">
         <h1 class="logo"><img src="images/logo.png" alt="AMAI" /></h1>
+        <p class="tag">Asian inspired &amp; thoughtfully crafted</p>
 
         <nav>
           <a href="/locations">Locations</a>
@@ -217,5 +268,19 @@
       <span>Have a sweet day!</span>
       <a href="/contact">Contact</a>
     </footer>
+    <script>
+      (function () {
+        var sp = document.getElementById("splash");
+        if (!sp || document.documentElement.classList.contains("seen")) return;
+        function done() {
+          sp.classList.add("out");
+          try {
+            sessionStorage.setItem("amaiSplash", "1");
+          } catch (e) {}
+        }
+        setTimeout(done, 2000);
+        sp.addEventListener("click", done);
+      })();
+    </script>
   </body>
 </html>
