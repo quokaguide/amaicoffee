@@ -89,6 +89,10 @@
         letter-spacing: 0.02em;
         color: #2b2c2a;
         max-width: 560px;
+        text-align: justify;
+        text-align-last: left;
+        text-wrap: pretty;
+        hyphens: manual;
       }
 
       .photos {
@@ -124,6 +128,10 @@
         .story {
           font-size: 15px;
           line-height: 1.9;
+          margin: 0 auto;
+          text-align-last: center;
+          hyphens: auto;
+          -webkit-hyphens: auto;
         }
       }
       @media (max-width: 560px) {
@@ -153,7 +161,6 @@
 
     <main>
       <section class="text">
-        <h1 class="eyebrow">About</h1>
         <p class="story">
           Amai means sweet in Japanese. Founded in 2021 our third spaces are
           asian owned and pay homage to our cultures in our recipes and sourcing
@@ -171,5 +178,70 @@
         />
       </div>
     </main>
+
+    <script>
+      // Trim the paragraph's width a little so its last line ends nearly full, never a short orphan line.
+      (function () {
+        var p = document.querySelector(".story");
+        function measure() {
+          var r = document.createRange();
+          r.selectNodeContents(p);
+          var rows = {},
+            rects = r.getClientRects();
+          for (var i = 0; i < rects.length; i++) {
+            var k = Math.round(rects[i].top),
+              x = rects[i];
+            if (!rows[k]) rows[k] = [x.left, x.right];
+            else {
+              rows[k][0] = Math.min(rows[k][0], x.left);
+              rows[k][1] = Math.max(rows[k][1], x.right);
+            }
+          }
+          var ks = Object.keys(rows)
+            .map(Number)
+            .sort(function (a, b) {
+              return a - b;
+            });
+          var last = rows[ks[ks.length - 1]];
+          return {
+            lines: ks.length,
+            fill: (last[1] - last[0]) / p.getBoundingClientRect().width,
+          };
+        }
+        function fit() {
+          p.style.width = "";
+          p.style.fontSize = "";
+          var base = parseFloat(getComputedStyle(p).fontSize),
+            full = p.getBoundingClientRect().width;
+          var deltas = [0, -0.25, 0.25, -0.5, 0.5, -0.75, 0.75],
+            best = null;
+          search: for (var d = 0; d < deltas.length; d++) {
+            p.style.fontSize = base + deltas[d] + "px";
+            for (var pct = 100; pct >= 80; pct--) {
+              p.style.width = (full * pct) / 100 + "px";
+              var m = measure();
+              if (!best || m.fill > best.fill)
+                best = { fs: base + deltas[d], pct: pct, fill: m.fill };
+              if (m.fill >= 0.9) {
+                best = { fs: base + deltas[d], pct: pct, fill: m.fill };
+                break search;
+              }
+            }
+          }
+          p.style.fontSize = best.fs + "px";
+          p.style.width = (full * best.pct) / 100 + "px";
+        }
+        var t;
+        function run() {
+          clearTimeout(t);
+          t = setTimeout(fit, 60);
+        }
+        if (document.fonts && document.fonts.ready)
+          document.fonts.ready.then(fit);
+        else window.addEventListener("load", fit);
+        window.addEventListener("resize", run);
+        fit();
+      })();
+    </script>
   </body>
 </html>
