@@ -74,6 +74,16 @@
         height: auto;
         display: block;
         animation: hop 1s ease-out 0.4s 1;
+        position: relative;
+        z-index: 5;
+        cursor: grab;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+      .logo img.grab {
+        cursor: grabbing;
       }
       @keyframes hop {
         0% {
@@ -188,6 +198,7 @@
     <main>
       <div class="content">
         <h1 class="logo"><img src="images/logo.png" alt="AMAI" /></h1>
+        <p class="tag">Asian inspired &amp; thoughtfully crafted</p>
 
         <nav>
           <a href="/locations">Locations</a>
@@ -200,5 +211,64 @@
       <span>Have a sweet day!</span>
       <a href="/contact">Contact</a>
     </footer>
+    <script>
+      // grab the logo and drag it anywhere; let go and it springs back. A simple click makes it hop again.
+      (function () {
+        var img = document.querySelector(".logo img");
+        var x = 0,
+          y = 0,
+          sx = 0,
+          sy = 0,
+          drag = false,
+          moved = 0,
+          back = null;
+        img.draggable = false;
+
+        img.addEventListener("pointerdown", function (e) {
+          drag = true;
+          moved = 0;
+          sx = e.clientX - x;
+          sy = e.clientY - y;
+          img.setPointerCapture(e.pointerId);
+          img.style.animation = "none";
+          if (back) back.cancel();
+          img.classList.add("grab");
+          e.preventDefault();
+        });
+
+        img.addEventListener("pointermove", function (e) {
+          if (!drag) return;
+          x = e.clientX - sx;
+          y = e.clientY - sy;
+          moved = Math.max(moved, Math.hypot(x, y));
+          img.style.transform =
+            "translate(" + x + "px," + y + "px) scale(1.04)";
+        });
+
+        function release() {
+          if (!drag) return;
+          drag = false;
+          img.classList.remove("grab");
+          if (moved < 4) {
+            // just a click: hop in place
+            x = y = 0;
+            img.style.transform = "";
+            img.style.animation = "none";
+            void img.offsetWidth;
+            img.style.animation = "hop 1s ease-out 0s 1";
+            return;
+          }
+          var from = "translate(" + x + "px," + y + "px) scale(1.04)";
+          back = img.animate(
+            [{ transform: from }, { transform: "translate(0,0) scale(1)" }],
+            { duration: 700, easing: "cubic-bezier(.34,1.8,.5,1)" },
+          );
+          x = y = 0;
+          img.style.transform = "";
+        }
+        img.addEventListener("pointerup", release);
+        img.addEventListener("pointercancel", release);
+      })();
+    </script>
   </body>
 </html>
