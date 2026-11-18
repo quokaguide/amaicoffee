@@ -92,6 +92,30 @@
         width: 100%;
         height: auto;
         display: block;
+        animation: hop 1s ease-out 0.4s 1;
+      }
+      @keyframes hop {
+        0% {
+          transform: translateY(0);
+        }
+        25% {
+          transform: translateY(-16px);
+        }
+        50% {
+          transform: translateY(0);
+        }
+        68% {
+          transform: translateY(-6px);
+        }
+        84% {
+          transform: translateY(0);
+        }
+        92% {
+          transform: translateY(-2px);
+        }
+        100% {
+          transform: translateY(0);
+        }
       }
       .tag {
         margin-top: 34px;
@@ -192,57 +216,9 @@
           align-items: center;
         }
       }
-
-      /* splash intro: logo alone on cream, then fades to the page */
-      #splash {
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #faf9f6;
-        cursor: pointer;
-        transition:
-          opacity 0.9s ease,
-          visibility 0s linear 0.9s;
-      }
-      #splash img {
-        width: min(340px, 62vw);
-        height: auto;
-        opacity: 0;
-        transform: translateY(6px);
-        animation: splashIn 1s ease 0.2s forwards;
-      }
-      #splash.out {
-        opacity: 0;
-        visibility: hidden;
-      }
-      .seen #splash {
-        display: none;
-      }
-      @keyframes splashIn {
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
     </style>
-    <script>
-      // play the splash on a fresh visit or refresh; skip it when coming from another page of this site
-      try {
-        if (
-          document.referrer &&
-          new URL(document.referrer).host === location.host
-        )
-          document.documentElement.classList.add("seen");
-      } catch (e) {}
-    </script>
   </head>
   <body>
-    <div id="splash" aria-hidden="true">
-      <img src="images/logo.png" alt="" />
-    </div>
     <div
       class="photo"
       role="img"
@@ -265,16 +241,5 @@
       <span>Have a sweet day!</span>
       <a href="/contact">Contact</a>
     </footer>
-    <script>
-      (function () {
-        var sp = document.getElementById("splash");
-        if (!sp || document.documentElement.classList.contains("seen")) return;
-        function done() {
-          sp.classList.add("out");
-        }
-        setTimeout(done, 2200);
-        sp.addEventListener("click", done);
-      })();
-    </script>
   </body>
 </html>
