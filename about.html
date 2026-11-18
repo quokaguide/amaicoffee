@@ -68,19 +68,12 @@
         padding: 50px 40px 70px;
       }
       .eyebrow {
+        margin-bottom: 26px;
         font-size: 11px;
         font-weight: 700;
         letter-spacing: 0.32em;
         text-transform: uppercase;
         color: var(--muted);
-      }
-      h1 {
-        font-family: Georgia, "Times New Roman", serif;
-        font-style: italic;
-        font-weight: 600;
-        font-size: clamp(40px, 4.6vw, 62px);
-        line-height: 1.06;
-        margin: 20px 0 30px;
       }
       .story {
         font-size: 17px;
@@ -90,11 +83,12 @@
         max-width: 560px;
       }
 
-      .cup {
-        width: clamp(300px, 36vw, 500px);
-        height: auto;
+      .photo {
+        width: clamp(300px, 34vw, 470px);
+        aspect-ratio: 1/1;
+        object-fit: cover;
         display: block;
-        overflow: visible;
+        opacity: 0.85;
       }
 
       @media (max-width: 800px) {
@@ -105,18 +99,13 @@
           text-align: center;
           justify-items: center;
         }
-        .cup {
+        .photo {
           order: -1;
-          width: min(300px, 78vw);
-          margin-right: 16px;
+          width: min(340px, 82vw);
         }
         .story {
           font-size: 15px;
           line-height: 1.9;
-        }
-        h1 {
-          font-size: 38px;
-          margin: 16px 0 20px;
         }
       }
       @media (max-width: 560px) {
@@ -133,66 +122,21 @@
 
     <main>
       <section class="text">
-        <p class="eyebrow">About</p>
-        <h1>Amai means sweet in Japanese.</h1>
+        <h1 class="eyebrow">About</h1>
         <p class="story">
-          Founded in 2021 our third spaces are asian owned and pay homage to our
-          cultures in our recipes and sourcing of ingredients. We started with a
-          deep love for coffee, matcha, good design, and integrity in all things
-          hospitality. We believe simplicity is key and we keep everything
-          simple and of the highest quality.
+          Amai means sweet in Japanese. Founded in 2021 our third spaces are
+          asian owned and pay homage to our cultures in our recipes and sourcing
+          of ingredients. We started with a deep love for coffee, matcha, good
+          design, and integrity in all things hospitality. We believe simplicity
+          is key and we keep everything simple and of the highest quality.
         </p>
       </section>
 
-      <!-- Photo cut into a cup shape. The photo lives at images/about.jpg -->
-      <svg
-        class="cup"
-        viewBox="-10 0 330 430"
-        role="img"
-        aria-label="Matcha and iced coffee in amai cups"
-      >
-        <defs>
-          <clipPath id="cupclip">
-            <path
-              d="M30 14 H270 Q286 14 286 30 V58 Q286 66 278 66 H22 Q14 66 14 58 V30 Q14 14 30 14 Z"
-            />
-            <path
-              d="M30 66 H270 L248 380 Q246 404 222 404 H78 Q54 404 52 380 Z"
-            />
-          </clipPath>
-        </defs>
-        <g
-          transform="translate(16 16)"
-          fill="none"
-          stroke="#1a1a1a"
-          stroke-width="1.5"
-        >
-          <path
-            d="M30 14 H270 Q286 14 286 30 V58 Q286 66 278 66 H22 Q14 66 14 58 V30 Q14 14 30 14 Z"
-          />
-          <path
-            d="M30 66 H270 L248 380 Q246 404 222 404 H78 Q54 404 52 380 Z"
-          />
-        </g>
-        <g clip-path="url(#cupclip)">
-          <image
-            href="images/about.jpg"
-            x="-8"
-            y="8"
-            width="316"
-            height="414"
-            preserveAspectRatio="xMidYMid slice"
-          />
-        </g>
-        <g fill="none" stroke="#1a1a1a" stroke-width="2">
-          <path
-            d="M30 14 H270 Q286 14 286 30 V58 Q286 66 278 66 H22 Q14 66 14 58 V30 Q14 14 30 14 Z"
-          />
-          <path
-            d="M30 66 H270 L248 380 Q246 404 222 404 H78 Q54 404 52 380 Z"
-          />
-        </g>
-      </svg>
+      <img
+        class="photo"
+        src="images/about-warm.jpg"
+        alt="Matcha and iced coffee in amai cups"
+      />
     </main>
   </body>
 </html>
