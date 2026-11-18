@@ -227,16 +227,14 @@
           transform: none;
         }
       }
-      @media (prefers-reduced-motion: reduce) {
-        #splash {
-          display: none;
-        }
-      }
     </style>
     <script>
-      // skip the splash if it was already shown this visit
+      // play the splash on a fresh visit or refresh; skip it when coming from another page of this site
       try {
-        if (sessionStorage.getItem("amaiSplash"))
+        if (
+          document.referrer &&
+          new URL(document.referrer).host === location.host
+        )
           document.documentElement.classList.add("seen");
       } catch (e) {}
     </script>
@@ -273,11 +271,8 @@
         if (!sp || document.documentElement.classList.contains("seen")) return;
         function done() {
           sp.classList.add("out");
-          try {
-            sessionStorage.setItem("amaiSplash", "1");
-          } catch (e) {}
         }
-        setTimeout(done, 2000);
+        setTimeout(done, 2200);
         sp.addEventListener("click", done);
       })();
     </script>
