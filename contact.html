@@ -1,128 +1,392 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact | AMAI</title>
-<style>
-  @font-face { font-family:"Gloock"; src:url(fonts/gloock.woff2) format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-  :root { --bg:#faf9f6; --ink:#1a1a1a; --muted:#4f514e; --line:#d9d7d2; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  html { background:#faf9f6; }
-  body {
-    color:var(--ink);
-    font-family:"Gloock",Georgia,"Times New Roman",serif; font-synthesis:none;
-    min-height:100vh; display:flex; flex-direction:column;
-    background:linear-gradient(180deg,#faf9f6 0%,#f9f7f3 70%,#f3eee8 100%);
-  }
-  a { color:inherit; text-decoration:none; }
-  header { position:sticky; top:0; z-index:20; display:flex; justify-content:space-between; align-items:center; padding:28px 40px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; background:rgba(250,249,246,.94); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
-  header a:hover { opacity:.6; }
-  main { flex:1; display:flex; flex-direction:column; align-items:center; padding:56px 24px 90px; text-align:center; }
-  .logo { width:min(200px,50%); margin-bottom:40px; }
-  .logo img { width:100%; display:block; }
-  h1 { font-size:12px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-  .sub { font-family:"Gloock",Georgia,"Times New Roman",serif; font-weight:600; font-size:20px; margin-bottom:34px; }
-
-  .card { width:min(560px,100%); padding:44px 44px 40px; background:#fff; border:1px solid #e3e4e2; box-shadow:0 24px 60px rgba(40,42,40,.12); text-align:left; }
-  .field { margin-bottom:26px; }
-  label { display:block; font-size:10.5px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
-  input, select, textarea { width:100%; font:inherit; font-size:16px; color:var(--ink); background:transparent; border:0; border-bottom:1px solid var(--ink); border-radius:0; padding:8px 0 10px; outline:none; -webkit-appearance:none; appearance:none; }
-  select { background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 4px center; padding-right:24px; }
-  textarea { min-height:120px; resize:vertical; line-height:1.6; }
-  input:focus, select:focus, textarea:focus { border-bottom-width:2px; padding-bottom:9px; }
-  .row { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-  button { width:100%; margin-top:6px; padding:16px 22px; font:inherit; font-size:12px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#fff; background:var(--ink); border:1px solid var(--ink); cursor:pointer; transition:background .2s,color .2s; }
-  button:hover { background:#fff; color:var(--ink); }
-  button:disabled { opacity:.6; cursor:default; }
-  .msg { margin-top:18px; font-size:13px; line-height:1.6; font-weight:600; text-align:center; }
-  .msg.err { color:#8a1c1c; }
-  .thanks { display:none; text-align:center; padding:30px 0 20px; }
-  .thanks h2 { font-family:"Gloock",Georgia,"Times New Roman",serif; font-weight:600; font-size:32px; margin-bottom:14px; }
-  .thanks p { font-size:15px; line-height:1.8; color:#2b2c2a; }
-  .done form { display:none; }
-  .done .thanks { display:block; }
-
-  @media (max-width:560px) { header { padding:16px 20px; } main { padding:40px 18px 70px; } .card { padding:32px 24px 30px; } .row { grid-template-columns:1fr; gap:0; } }
-</style>
-</head>
-<body>
-  <header><a href="/">&larr; Home</a><a href="/locations">Locations</a></header>
-  <main>
-    <a class="logo" href="/"><img src="images/logo.png" alt="AMAI"></a>
-    <h1>Contact</h1>
-    <p class="sub">Questions or Just Saying Hi.</p>
-
-    <div class="card" id="card">
-      <form id="form" action="https://api.web3forms.com/submit" method="POST">
-        <!-- Web3Forms access key (public, safe to keep in the page) -->
-        <input type="hidden" name="access_key" value="dc8ff7d4-a465-4d9a-8ef4-ccf2d33c4bbd">
-        <input type="hidden" name="subject" value="New message from amaicoffee.com">
-        <input type="hidden" name="from_name" value="amai website">
-        <input type="hidden" name="redirect" value="https://amaicoffee.com/contact">
-        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
-
-        <div class="row">
-          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-          <div class="field"><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-        </div>
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field">
-          <label for="location">Which location?</label>
-          <select id="location" name="location">
-            <option>Not sure / General</option>
-            <option>Santa Monica</option>
-            <option>Glendale</option>
-            <option>Torrance</option>
-            <option>Huntington Beach</option>
-            <option>Sherman Oaks</option>
-          </select>
-        </div>
-        <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-
-        <button type="submit" id="send">Send message</button>
-        <p class="msg" id="msg" role="status"></p>
-      </form>
-
-      <div class="thanks">
-        <h2>Thank you!</h2>
-        <p>Your message is on its way. We&rsquo;ll get back to you soon.</p>
-      </div>
-    </div>
-  </main>
-
-  <script>
-    var form = document.getElementById("form");
-    var card = document.getElementById("card");
-    var msg = document.getElementById("msg");
-    var btn = document.getElementById("send");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      msg.textContent = ""; msg.className = "msg";
-      if (form.access_key.value === "YOUR_ACCESS_KEY_HERE") {
-        msg.textContent = "Form isn't connected yet. Add the access key first."; msg.className = "msg err"; return;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | AMAI</title>
+    <style>
+      @font-face {
+        font-family: "Gloock";
+        src: url(fonts/gloock.woff2) format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
       }
-      btn.disabled = true; btn.textContent = "Sending...";
-      var data = {};
-      new FormData(form).forEach(function (v, k) { data[k] = v; });
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(function (r) { return r.json(); })
-      .then(function (res) {
-        if (res.success) { card.classList.add("done"); form.reset(); }
-        else { throw new Error(res.message || "Something went wrong"); }
-      })
-      .catch(function () {
-        msg.textContent = "Sorry, that didn't send. Please try again or call one of our locations.";
-        msg.className = "msg err";
-      })
-      .then(function () { btn.disabled = false; btn.textContent = "Send message"; });
-    });
-  </script>
-</body>
+      :root {
+        --bg: #faf9f6;
+        --ink: #1a1a1a;
+        --muted: #4f514e;
+        --line: #d9d7d2;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        background: #faf9f6;
+      }
+      body {
+        color: var(--ink);
+        font-family: "Gloock", Georgia, "Times New Roman", serif;
+        font-synthesis: none;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(
+          180deg,
+          #faf9f6 0%,
+          #f9f7f3 70%,
+          #f3eee8 100%
+        );
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 40px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: rgba(250, 249, 246, 0.6);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      header a:hover {
+        opacity: 0.6;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 56px 24px 90px;
+        text-align: center;
+      }
+      .logo {
+        width: min(200px, 50%);
+        margin-bottom: 40px;
+      }
+      .logo img {
+        width: 100%;
+        display: block;
+      }
+      h1 {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .sub {
+        font-family: "Gloock", Georgia, "Times New Roman", serif;
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 34px;
+      }
+
+      .card {
+        width: min(560px, 100%);
+        padding: 44px 44px 40px;
+        background: #fff;
+        border: 1px solid #e3e4e2;
+        box-shadow: 0 24px 60px rgba(40, 42, 40, 0.12);
+        text-align: left;
+      }
+      .field {
+        margin-bottom: 26px;
+      }
+      label {
+        display: block;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        font: inherit;
+        font-size: 16px;
+        color: var(--ink);
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--ink);
+        border-radius: 0;
+        padding: 8px 0 10px;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      select {
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='1.5'/%3E%3C/svg%3E")
+          no-repeat right 4px center;
+        padding-right: 24px;
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+        line-height: 1.6;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-bottom-width: 2px;
+        padding-bottom: 9px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .hp {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      button {
+        width: 100%;
+        margin-top: 6px;
+        padding: 16px 22px;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--ink);
+        border: 1px solid var(--ink);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      button:hover {
+        background: #fff;
+        color: var(--ink);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .msg {
+        margin-top: 18px;
+        font-size: 13px;
+        line-height: 1.6;
+        font-weight: 600;
+        text-align: center;
+      }
+      .msg.err {
+        color: #8a1c1c;
+      }
+      .thanks {
+        display: none;
+        text-align: center;
+        padding: 30px 0 20px;
+      }
+      .thanks h2 {
+        font-family: "Gloock", Georgia, "Times New Roman", serif;
+        font-weight: 600;
+        font-size: 32px;
+        margin-bottom: 14px;
+      }
+      .thanks p {
+        font-size: 15px;
+        line-height: 1.8;
+        color: #2b2c2a;
+      }
+      .done form {
+        display: none;
+      }
+      .done .thanks {
+        display: block;
+      }
+
+      @media (max-width: 560px) {
+        header {
+          padding: 16px 20px;
+        }
+        main {
+          padding: 40px 18px 70px;
+        }
+        .card {
+          padding: 32px 24px 30px;
+        }
+        .row {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+      }
+
+      /* plaster texture, same on every page */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='5' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        background-size: 1600px 1000px;
+        opacity: 0.3;
+        mix-blend-mode: multiply;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/">&larr; Home</a><a href="/locations">Locations</a>
+    </header>
+    <main>
+      <a class="logo" href="/"><img src="images/logo.png" alt="AMAI" /></a>
+      <h1>Contact</h1>
+      <p class="sub">Questions, catering, or just saying hi.</p>
+
+      <div class="card" id="card">
+        <form id="form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms access key (public, safe to keep in the page) -->
+          <input
+            type="hidden"
+            name="access_key"
+            value="dc8ff7d4-a465-4d9a-8ef4-ccf2d33c4bbd"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="New message from amaicoffee.com"
+          />
+          <input type="hidden" name="from_name" value="amai website" />
+          <input
+            type="hidden"
+            name="redirect"
+            value="https://amaicoffee.com/contact"
+          />
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hp"
+            tabindex="-1"
+            autocomplete="off"
+          />
+
+          <div class="row">
+            <div class="field">
+              <label for="name">Name</label
+              ><input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="phone">Phone (optional)</label
+              ><input id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label
+            ><input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="location">Which location?</label>
+            <select id="location" name="location">
+              <option>Not sure / General</option>
+              <option>Santa Monica</option>
+              <option>Glendale</option>
+              <option>Torrance</option>
+              <option>Huntington Beach</option>
+              <option>Sherman Oaks</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label
+            ><textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" id="send">Send message</button>
+          <p class="msg" id="msg" role="status"></p>
+        </form>
+
+        <div class="thanks">
+          <h2>Thank you!</h2>
+          <p>Your message is on its way. We&rsquo;ll get back to you soon.</p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      var form = document.getElementById("form");
+      var card = document.getElementById("card");
+      var msg = document.getElementById("msg");
+      var btn = document.getElementById("send");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        msg.textContent = "";
+        msg.className = "msg";
+        if (form.access_key.value === "YOUR_ACCESS_KEY_HERE") {
+          msg.textContent =
+            "Form isn't connected yet. Add the access key first.";
+          msg.className = "msg err";
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = "Sending...";
+        var data = {};
+        new FormData(form).forEach(function (v, k) {
+          data[k] = v;
+        });
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (res) {
+            if (res.success) {
+              card.classList.add("done");
+              form.reset();
+            } else {
+              throw new Error(res.message || "Something went wrong");
+            }
+          })
+          .catch(function () {
+            msg.textContent =
+              "Sorry, that didn't send. Please try again or call one of our locations.";
+            msg.className = "msg err";
+          })
+          .then(function () {
+            btn.disabled = false;
+            btn.textContent = "Send message";
+          });
+      });
+    </script>
+  </body>
 </html>
