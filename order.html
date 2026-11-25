@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Order | AMAI</title>
     <style>
+      @font-face {
+        font-family: "Gloock";
+        src: url(fonts/gloock.woff2) format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
       :root {
-        --bg: #e6e8e6;
+        --bg: #faf9f6;
         --ink: #1a1a1a;
         --muted: #6b6d6a;
-        --line: #bfc1be;
+        --line: #d9d7d2;
       }
       * {
         box-sizing: border-box;
@@ -17,21 +24,21 @@
         padding: 0;
       }
       html {
-        background: #e6e8e6;
-      }
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background: url(images/marble-bg.jpg) center/cover no-repeat;
+        background: #faf9f6;
       }
       body {
         color: var(--ink);
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "Gloock", Georgia, "Times New Roman", serif;
+        font-synthesis: none;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        background: linear-gradient(
+          180deg,
+          #faf9f6 0%,
+          #f9f7f3 70%,
+          #f3eee8 100%
+        );
       }
       a {
         color: inherit;
@@ -48,6 +55,15 @@
       }
       header a:hover {
         opacity: 0.6;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(250, 249, 246, 0.6);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
       }
       main {
         flex: 1;
@@ -75,8 +91,7 @@
         margin-bottom: 10px;
       }
       .sub {
-        font-family: Georgia, "Times New Roman", serif;
-        font-style: italic;
+        font-family: "Gloock", Georgia, "Times New Roman", serif;
         font-size: 18px;
         margin-bottom: 34px;
       }
@@ -125,7 +140,7 @@
       }
       @media (max-width: 560px) {
         header {
-          padding: 20px;
+          padding: 16px 20px;
         }
         li {
           padding: 22px 4px;
@@ -133,6 +148,19 @@
         .city {
           font-size: 13px;
         }
+      }
+
+      /* plaster texture, same on every page */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='5' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        background-size: 1600px 1000px;
+        opacity: 0.3;
+        mix-blend-mode: multiply;
       }
     </style>
   </head>
@@ -187,7 +215,13 @@
         </li>
         <li>
           <span class="city">Sherman Oaks</span
-          ><span class="soon">Coming soon</span>
+          ><a
+            class="btn"
+            href="https://amaishermanoaks.square.site/"
+            target="_blank"
+            rel="noopener"
+            >Order here</a
+          >
         </li>
       </ul>
     </main>
